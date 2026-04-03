@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Warranty Remember</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="app.js" defer></script>
+
+</head>
+
+<body onload="loadData()">
+
+<!-- HEADER -->
+
+<div class="header">
+
+<div class="logo">
+
+<img src="assets/icon.png" class="logo-img">
+
+<h2>Warranty Remember</h2>
+
+</div>
+
+<div class="user">
+
+    <span id="userEmail"></span>
+    
+    <button class="logoutBtn" onclick="logout()">
+    Logout
+    </button>
+    
+    </div>
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="statCard">
+<h3 id="total">0</h3>
+<p>Total</p>
+</div>
+
+<div class="statCard">
+<h3 id="active">0</h3>
+<p>Active</p>
+</div>
+
+<div class="statCard">
+<h3 id="soon">0</h3>
+<p>Expiring Soon</p>
+</div>
+
+<div class="statCard">
+<h3 id="expired">0</h3>
+<p>Expired</p>
+</div>
+
+</div>
+
+
+<!-- SEARCH + ADD -->
+
+<div class="topBar">
+
+<input
+id="search"
+placeholder="Search warranties..."
+onkeyup="searchWarranty()"
+>
+
+<button class="addBtn" onclick="openModal()">
++ Add Warranty
+</button>
+
+</div>
+
+
+<!-- WARRANTY LIST -->
+
+<div id="list" class="grid">
+
+</div>
+
+
+<!-- ADD WARRANTY MODAL -->
+
+<div id="modal" class="modal">
+
+<div class="modalBox">
+
+<h2>Add Warranty</h2>
+
+
+<div class="uploadBox">
+
+<label>Upload Bill</label>
+
+<input type="file" id="bill">
+
+</div>
+
+
+<input id="product" placeholder="Product Name">
+
+<input id="brand" placeholder="Brand">
+
+
+<label>Purchase Date</label>
+
+<input type="date" id="purchaseDate">
+
+
+<input id="duration" placeholder="Warranty Duration">
+
+<select id="durationType">
+
+<option value="years">Years</option>
+
+<option value="months">Months</option>
+
+</select>
+
+
+<div class="modalBtns">
+
+<button class="saveBtn" onclick="saveWarranty()">
+
+Save
+
+</button>
+
+<button class="cancelBtn" onclick="closeModal()">
+
+Cancel
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</body>
+
+</html>

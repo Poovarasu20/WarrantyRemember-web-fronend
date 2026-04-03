@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" type="image/x-icon" href="assets/icon.png"><title>Warranty Remember - Login</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0f172a,#1e1b4b,#312e81);
+}
+
+.container{
+text-align:center;
+}
+
+.logo{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+margin-bottom:30px;
+color:white;
+}
+
+.logo h1{
+font-size:28px;
+}
+.logo-img{
+width:40px;
+height:40px;
+object-fit:contain;
+}
+
+.card{
+width:380px;
+padding:40px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+color:white;
+}
+
+.card h2{
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:14px;
+color:#cbd5f5;
+margin-bottom:25px;
+}
+
+.input-group{
+margin-bottom:18px;
+text-align:left;
+}
+
+.input-group label{
+font-size:13px;
+color:#cbd5f5;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:6px;
+border-radius:12px;
+border:none;
+background:#1e293b;
+color:white;
+outline:none;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:none;
+border-radius:25px;
+background:linear-gradient(90deg,#6366f1,#ec4899);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+.link{
+margin-top:12px;
+color:#a78bfa;
+cursor:pointer;
+}
+
+.signup{
+margin-top:18px;
+color:#cbd5f5;
+}
+
+.signup span{
+color:#a78bfa;
+cursor:pointer;
+}
+.password-field{
+position:relative;
+width:100%;
+}
+
+.password-field input{
+width:100%;
+padding:12px;
+padding-right:40px; /* space for eye icon */
+border-radius:10px;
+border:1px solid #ddd;
+}
+
+.toggle-password{
+position:absolute;
+right:12px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:16px;
+color:#888;
+}
+
+.toggle-password:hover{
+color:#000;
+}
+.container{
+animation:zoomIn 0.7s ease;
+}
+
+@keyframes zoomIn{
+from{
+opacity:0;
+transform:scale(0.9);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+
+<img src="assets/icon.png" class="logo-img">
+
+<h1>Warranty Remember</h1>
+
+</div>
+
+<div class="card">
+
+<h2>Welcome Back</h2>
+
+<p class="subtitle">
+Sign in to manage your warranties
+</p>
+
+<div class="input-group">
+
+<label><b>Email</b></label>
+
+<input
+id="email"
+placeholder="you@example.com"
+>
+
+</div>
+
+
+<div class="input-group">
+
+    <label><b>Password</b></label>
+    
+    <div class="password-field">
+    
+    <input
+    type="password"
+    id="password"
+    placeholder="Enter password">
+    
+    <span class="toggle-password" onclick="togglePassword()">👁</span>
+    
+    </div>
+    
+    </div>
+
+
+<button onclick="login()">
+Sign In
+</button>
+
+
+<p class="link"
+onclick="window.location='forgot.html'">
+<b>Forgot Password?</b>
+</p>
+
+
+<p class="signup">
+<span onclick="window.location='signup.html'">
+    <b>Don't have an account? Sign up</b>
+</span>
+</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+async function login(){
+
+let email=document.getElementById("email").value
+let password=document.getElementById("password").value
+
+if(!email || !password){
+alert("Enter email and password")
+return
+}
+
+const res = await fetch("https://warrantyremember-web-backend.onrender.com/api/auth/login",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+email,
+password
+})
+
+})
+
+const data = await res.json()
+
+if(data.token){
+
+localStorage.setItem("token",data.token)
+localStorage.setItem("user",data.email)
+
+window.location="dashboard.html"
+
+}else{
+
+alert(data.message)
+
+}
+
+}
+function togglePassword(){
+
+let pass=document.getElementById("password")
+
+if(pass.type==="password"){
+pass.type="text"
+}else{
+pass.type="password"
+}
+
+}
+
+</script>
+
+</body>
+</html>

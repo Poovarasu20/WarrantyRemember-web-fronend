@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#020617,#1e1b4b,#312e81);
+}
+
+.container{
+text-align:center;
+}
+
+.logo{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+margin-bottom:30px;
+color:white;
+}
+
+.logo-icon{
+width:45px;
+height:45px;
+background:linear-gradient(135deg,#6366f1,#ec4899);
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+color:white;
+}
+
+.logo h1{
+font-size:26px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+padding:40px;
+width:400px;
+border-radius:20px;
+color:white;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+.subtitle{
+font-size:14px;
+color:#cbd5f5;
+margin-bottom:25px;
+}
+
+.input-group{
+margin-bottom:18px;
+text-align:left;
+}
+
+.input-group label{
+font-size:13px;
+color:#cbd5f5;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:6px;
+border-radius:12px;
+border:none;
+background:#1e293b;
+color:white;
+outline:none;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:25px;
+background:linear-gradient(90deg,#6366f1,#ec4899);
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:15px;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+.signin{
+margin-top:18px;
+color:#cbd5f5;
+}
+
+.signin span{
+color:#a78bfa;
+cursor:pointer;
+}
+.password-box{
+position:relative;
+}
+
+.password-box input{
+width:100%;
+padding-right:40px;
+}
+
+.toggle-password{
+position:absolute;
+right:12px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:16px;
+color:#cbd5f5;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+<div class="logo-icon">🛡</div>
+<h1>Warranty Remember</h1>
+</div>
+
+<div class="card">
+
+<h2>Create Account</h2>
+<p class="subtitle">Start tracking your warranties</p>
+
+<div class="input-group">
+<label><b>Full Name</b></label>
+<input id="name" placeholder="John Doe">
+</div>
+
+<div class="input-group">
+<label><strong>Email</strong></label>
+<input id="email" placeholder="you@example.com">
+</div>
+
+<div class="input-group">
+<label><b>Password</b></label>
+
+<div class="password-box">
+<input type="password" id="password" placeholder="User@123">
+<span class="toggle-password" onclick="togglePassword()">👁</span>
+</div>
+
+</div>
+
+<button onclick="signup()">Create Account</button>
+
+<p class="signin">
+    
+    <span onclick="window.location='index.html'">
+        <b>Already have an account? Sign in</b> </span>
+    </p>
+
+</div>
+
+</div>
+
+<script>
+
+async function signup(){
+
+let name=document.getElementById("name").value
+let email=document.getElementById("email").value
+let password=document.getElementById("password").value
+
+if(!name || !email || !password){
+alert("Fill all fields")
+return
+}
+
+let res = await fetch("https://warrantyremember-web-backend.onrender.com/api/auth/signup",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+name,
+email,
+password
+})
+
+})
+
+let data = await res.json()
+
+alert(data.message)
+
+window.location="index.html"
+
+}
+function togglePassword(){
+let passwordInput = document.getElementById("password")
+
+if(passwordInput.type === "password"){
+    passwordInput.type = "text"
+}else{
+    passwordInput.type = "password"
+}
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Reset Password</title>
+
+<style>
+
+body{
+font-family:"Segoe UI",sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#020617,#1e1b4b,#312e81);
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+padding:40px;
+width:380px;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+color:white;
+text-align:center;
+}
+
+h2{
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:12px;
+border:none;
+background:#1e293b;
+color:white;
+}
+
+button{
+width:40%;
+padding:10px;
+border:none;
+border-radius:20px;
+background:linear-gradient(90deg,#6366f1,#ec4899);
+color:white;
+font-size:14px;
+cursor:pointer;
+margin-top:8px;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+.link{
+margin-top:15px;
+color:#a78bfa;
+cursor:pointer;
+}
+.password-box{
+position:relative;
+}
+
+.password-box input{
+width:100%;
+padding-right:12px;
+}
+
+.toggle-password{
+position:absolute;
+right:12px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:16px;
+color:#cbd5f5;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Reset Password</h2>
+
+<input id="email" placeholder="Enter Email">
+
+<button id="sendBtn" onclick="sendOTP()">
+    Send OTP
+    </button>
+
+<input id="otp" placeholder="Enter OTP">
+
+<button onclick="verifyOTP()">Verify OTP</button>
+
+<div class="password-box">
+<input type="password" id="password" placeholder="New Password">
+<span class="toggle-password" onclick="togglePassword()">👁</span>
+</div>
+
+<button onclick="resetPassword()">Reset Password</button>
+
+<p class="link"
+onclick="window.location='index.html'">
+<b>Back to Login</b>
+</p>
+
+</div>
+
+<script>
+
+let timer = 60
+
+async function sendOTP(){
+
+let email=document.getElementById("email").value
+
+const res = await fetch("https://warrantyremember-web-backend.onrender.com/api/auth/send-otp",{
+
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({email})
+
+})
+
+const data = await res.json()
+
+alert(data.message)
+
+/* start resend timer */
+
+const btn=document.getElementById("sendBtn")
+
+btn.disabled=true
+
+let interval=setInterval(()=>{
+
+timer--
+
+btn.innerText="Resend OTP ("+timer+")"
+
+if(timer===0){
+
+clearInterval(interval)
+
+btn.disabled=false
+
+btn.innerText="Send OTP"
+
+timer=60
+
+}
+
+},1000)
+
+}
+
+
+
+async function verifyOTP(){
+
+let email=document.getElementById("email").value
+let otp=document.getElementById("otp").value
+
+const res = await fetch("https://warrantyremember-web-backend.onrender.com/api/auth/verify-otp",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({email,otp})
+
+})
+
+const data = await res.json()
+
+alert(data.message)
+
+}
+
+
+
+async function resetPassword(){
+
+let email=document.getElementById("email").value
+let password=document.getElementById("password").value
+
+const res = await fetch("https://warrantyremember-web-backend.onrender.com/api/auth/reset-password",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({email,password})
+
+})
+
+const data = await res.json()
+
+alert(data.message)
+
+window.location="index.html"
+
+}
+function togglePassword(){
+let passwordInput = document.getElementById("password")
+
+if(passwordInput.type === "password"){
+    passwordInput.type = "text"
+}else{
+    passwordInput.type = "password"
+}
+}
+
+</script>
+
+</body>
+</html>

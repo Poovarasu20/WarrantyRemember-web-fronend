@@ -1,0 +1,363 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+    }
+    
+    body{
+    background:linear-gradient(135deg,#1e1b4b,#0f172a);
+    min-height:100vh;
+    color:white;
+    }
+    
+    /* HEADER */
+    
+    .header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+    
+    .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:18px;
+    }
+    
+    .icon{
+    font-size:24px;
+    }
+    
+    /* USER */
+    
+    .user{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    }
+    
+    .logoutBtn{
+    background:linear-gradient(90deg,#6366f1,#ec4899);
+    border:none;
+    padding:8px 16px;
+    border-radius:20px;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    }
+    
+    .logoutBtn:hover{
+    transform:scale(1.05);
+    }
+    
+    /* STATS */
+    
+    .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    padding:30px 40px;
+    }
+    
+    .statCard{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    transition:0.3s;
+    }
+    
+    .statCard:hover{
+    transform:translateY(-5px);
+    }
+    
+    .statCard h3{
+    font-size:32px;
+    color:#a78bfa;
+    }
+    
+    /* SEARCH BAR */
+    
+    .topBar{
+    display:flex;
+    justify-content:space-between;
+    padding:0 40px 20px;
+    }
+    
+    .topBar input{
+    width:300px;
+    padding:12px;
+    border-radius:30px;
+    border:none;
+    outline:none;
+    background:rgba(255,255,255,0.08);
+    color:white;
+    }
+    
+    /* ADD BUTTON */
+    
+    .addBtn{
+    background:linear-gradient(90deg,#6366f1,#ec4899);
+    border:none;
+    padding:12px 20px;
+    border-radius:30px;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    }
+    
+    .addBtn:hover{
+    transform:scale(1.05);
+    }
+    
+    /* GRID */
+    
+    .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:20px;
+    padding:20px 40px;
+    }
+    
+    /* CARD */
+    
+   .card{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    transition:0.3s;
+    }
+    
+    .card:hover{
+    transform:translateY(-6px);
+    }
+    
+    .card p{
+    color:#cbd5f5;
+    font-size:14px;
+    }
+
+    
+    /* PROGRESS BAR */
+    
+    .progress{
+    height:6px;
+    background:#334155;
+    border-radius:10px;
+    margin:10px 0;
+    }
+    
+    .bar{
+    height:6px;
+    background:linear-gradient(90deg,#6366f1,#ec4899);
+    border-radius:10px;
+    }
+    
+    /* BUTTON ROW */
+    
+    .btnRow{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+    }
+    
+    .btnRow button{
+    flex:1;
+    border:none;
+    padding:8px;
+    border-radius:10px;
+    cursor:pointer;
+    }
+    
+    .btnRow button:first-child{
+    background:#6366f1;
+    color:white;
+    }
+    
+    .btnRow button:last-child{
+    background:#ef4444;
+    color:white;
+    }
+    
+    /* MODAL */
+    
+    .modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    }
+    
+    .modalBox{
+    background:#0f172a;
+    padding:25px;
+    width:400px;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    }
+    
+    .modalBox input,
+    .modalBox select{
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    background:#1e293b;
+    color:white;
+    }
+    
+    .uploadBox{
+    border:2px dashed #475569;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+    }
+    
+    .modalBtns{
+    display:flex;
+    gap:10px;
+    margin-top:10px;
+    }
+    
+    .saveBtn{
+    flex:1;
+    background:#6366f1;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:10px;
+    cursor:pointer;
+    }
+    
+    .cancelBtn{
+    flex:1;
+    background:#334155;
+    border:none;
+    color:white;
+    padding:10px;
+    border-radius:10px;
+    cursor:pointer;
+    }
+    
+    /* EXPIRED */
+    
+    .expiredCard{
+    border:2px solid red;
+    background:#3f1d1d;
+    }
+    
+    .alert{
+    color:#f87171;
+    font-weight:bold;
+    }
+    .user{
+        display:flex;
+        align-items:center;
+        gap:15px;
+        }
+        
+        .logoutBtn{
+        
+        padding:8px 16px;
+        
+        border:none;
+        
+        border-radius:20px;
+        
+        background:linear-gradient(90deg,#7c3aed,#ec4899);
+        
+        color:white;
+        
+        cursor:pointer;
+        
+        font-size:14px;
+        }
+        
+        .logoutBtn:hover{
+        opacity:0.9;
+        }
+        /* PAGE LOAD ANIMATION */
+
+body{
+    animation:fadePage 0.8s ease;
+    }
+    
+    @keyframes fadePage{
+    from{
+    opacity:0;
+    transform:translateY(20px);
+    }
+    to{
+    opacity:1;
+    transform:translateY(0);
+    }
+    }
+    .statCard{
+        animation:slideUp 0.7s ease forwards;
+        opacity:0;
+        }
+        
+        .statCard:nth-child(1){animation-delay:0.2s;}
+        .statCard:nth-child(2){animation-delay:0.4s;}
+        .statCard:nth-child(3){animation-delay:0.6s;}
+        .statCard:nth-child(4){animation-delay:0.8s;}
+        
+        @keyframes slideUp{
+        from{
+        opacity:0;
+        transform:translateY(30px);
+        }
+        to{
+        opacity:1;
+        transform:translateY(0);
+        }
+        }
+        .card{
+            animation:fadeCard 0.6s ease;
+            }
+            
+            @keyframes fadeCard{
+            from{
+            opacity:0;
+            transform:scale(0.9);
+            }
+            to{
+            opacity:1;
+            transform:scale(1);
+            }
+            }
+            .header{
+                animation:topSlide 0.6s ease;
+                }
+                
+                @keyframes topSlide{
+                from{
+                opacity:0;
+                transform:translateY(-30px);
+                }
+                to{
+                opacity:1;
+                transform:translateY(0);
+                }
+                }
+                .logo-img{
+                    width:40px;
+                    height:40px;
+                    object-fit:contain;
+                    }
